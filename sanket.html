@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comedy Puzzle Solver</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .hint {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Comedy Puzzle Solver</h1>
+    <p>Here's your challenge:</p>
+    <p><strong>What has keys but can’t open locks?</strong></p>
+    <input type="text" id="userAnswer" placeholder="Your Answer" />
+    <button onclick="checkAnswer()">Submit</button>
+    <p class="hint" id="hint"></p>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const correctAnswer = "keyboard";
+    let attempts = 0;
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById('userAnswer').value.toLowerCase();
+      const result = document.getElementById('result');
+      const hint = document.getElementById('hint');
+      
+      attempts++;
+      
+      if (userAnswer === correctAnswer) {
+        result.textContent = "🎉 Correct! You got it!";
+        hint.textContent = "";
+        attempts = 0; // Reset attempts for the next puzzle
+      } else if (attempts < 3) {
+        result.textContent = "❌ Incorrect. Try again!";
+        hint.textContent = `Hint: Attempt ${attempts}/3 - Think of something you type on.`;
+      } else {
+        result.textContent = `🤔 The answer is: ${correctAnswer}`;
+        hint.textContent = "";
+        attempts = 0; // Reset attempts for the next puzzle
+      }
+    }
+  </script>
+</body>
+</html>
